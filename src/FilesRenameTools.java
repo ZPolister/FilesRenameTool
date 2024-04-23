@@ -64,9 +64,27 @@ public class FilesRenameTools {
         for (String i : strings) {
             newName.append(i).append(newSeparator);
         }
+        if (!"".equals(newSeparator))
+            newName.deleteCharAt(newName.length() - 1);
 
-        newName.deleteCharAt(newName.length() - 1);
+        return newName.toString();
+    }
 
+    private String swapFilename(File file) {
+        if (file == null)
+            return "";
+
+        String oldName = file.getName(); // 获取旧名字
+        String[] strings = oldName.split(oldSeparator); // 获取分割后的数组
+
+
+        StringBuilder newName = new StringBuilder();
+        for (int i = strings.length - 1; i >= 0; i--) {
+            newName.append(strings[i]).append(newSeparator);
+        }
+
+        if (!"".equals(newSeparator))
+            newName.deleteCharAt(newName.length() - 1);
         return newName.toString();
     }
 }
